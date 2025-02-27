@@ -1,0 +1,56 @@
+import pandas as pd
+import statistics
+from matplotlib import pyplot as plt
+
+df = pd.read_csv("titanic.csv")
+#print(df) #printed a brief summary of my data
+
+#i deleted the unnecessary data from my data set e.g the cabin number as half of thie data was empty
+#i cleaned up the age data as some ages were undefined and this would mess with my data
+#using this code to get rid of any data with a decimal point 
+df1 = df["Age"]
+print(df1)
+for i in df1:
+    if i == ".":
+        df1.remove(i)
+print(df1)
+
+#Proving my Hypothesis!
+#1. more 3rd class than 1st class
+df1 = df['Pclass']
+print(df1)
+threeCount = 0
+for i in df1:
+    if i =="3":
+        threeCount+=1
+print("Third Class:", threeCount)
+
+
+oneCount = 0
+for i in df1:
+    if i =="1":
+        oneCount+=1
+print("First Class:", oneCount)
+
+
+#The main age range was 30 - 50
+df1 = df['Age']
+commonAge = df1[(df1['Age'] > 30) & (df1['Age'] < 50)]
+print(commonAge)
+
+df1 = df['Pclass']
+print(df1)
+threeCount = 0
+for i in df1:
+    if i == 3:
+        threeCount+=1
+print("Third Class:", threeCount)
+
+
+oneCount = 0
+for i in df1:
+    if i == 1:
+        oneCount+=1
+print("First Class:", oneCount)
+difference = threeCount - oneCount
+print(difference)
